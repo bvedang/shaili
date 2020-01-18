@@ -1,0 +1,85 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+
+<div class="row">
+  <div
+    class="col-5 rounded shadow bg-white"
+    style="overflow: auto;margin-left: 60px; margin-top:40px;"
+  >
+    <h5 style="font-size:x-large" class="display-4 ml-3 mt-3">
+      Livo Sulphuril Stage 2
+    </h5>
+    <div class="row ml-2 border-bottom border-dark">
+      <div class="col">
+        <p class="m-4">Dry FDB Available:</p>
+      </div>
+      <div class="col">
+        <p class="m-4">Quantity in Kg</p>
+      </div>
+    </div>
+    <div class="row ml-2 ">
+      <div class="col">
+        <p class="m-4">Batch Numbers:</p>
+      </div>
+      <div class="col">
+        <p class="m-4">List Of Batch</p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="col-5 rounded shadow bg-white"
+    style="overflow: auto;margin-left: 75px; margin-top:40px"
+  >
+    <h5 class="display-4 mt-5 text-center" style="font-size:x-large;">
+      New Batch & Current Batch
+    </h5>
+    <div class="col mt-5">
+      <a
+        href="{{url_for('ls_stage2.index_view')}}"
+        class="btn btn-success text-center ml-5"
+        >Batches In Progress</a
+      >
+      <a
+        href="{{url_for('ls_stage2.index_view')}}"
+        class="float-right btn btn-success mr-5"
+        >New Batch</a
+      >
+    </div>
+  </div>
+</div>
+
+<div
+  align="center"
+  class="col-11 bg-white shadow p-1 rounded"
+  style="overflow-x:auto;width:auto;margin-left: 45px; margin-top:40px"
+>
+  <h3 class="display-4" style="font-size:x-large;" align="center">
+    LS Stage 2 Batches
+  </h3>
+  {{table}}
+</div>
+
+<div
+  class="col-11 rounded bg-white shadow p-3"
+  style="width:auto;margin-left: 45px; margin-top:40px;"
+>
+  <h3 class="display-4" style="font-size:x-large;" align="center">
+    See Batches taken between dates
+  </h3>
+  <div
+    align="center"
+    class="col form-group"
+    action="{{url_for('inventory.ls_stage_1')}}"
+  >
+    <form methods="POST">
+      Starting date:
+      <input type="date" class="form-control" name="starting_date" /> Ending
+      date:
+      <input type="date" class="form-control" name="ending_date" />
+      <input type="submit" class="btn btn-primary mt-3" />
+    </form>
+  </div>
+  {% block activity %} {% endblock activity %}
+</div>
+
+{% endblock %}

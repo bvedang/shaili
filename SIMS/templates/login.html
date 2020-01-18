@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="jumbotron bg-white container rounded shadow"
+  style="margin-top: 100px"
+>
+  <h1 style="text-align: center">Login</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.email.label }} {{form.email(class='form-control')}}
+    </div>
+    <div class="form-group">
+      {{ form.password.label }} {{form.password(class='form-control')}}
+    </div>
+    <div align="center" class="form-group">
+      {{ form.submit(class='btn btn-primary') }}
+    </div>
+  </form>
+</div>
+
+{% endblock %}

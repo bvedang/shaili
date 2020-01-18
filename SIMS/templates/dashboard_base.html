@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/7d47dbf26e.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Dashboard</title>
+  </head>
+  <body style="overflow-x: hidden;overflow-y: scroll;">
+    <nav class="navbar navbar-dark shadow-lg" style="background:#ef5350;">
+      <a class="navbar-brand ml-5" href="{{url_for('core.dashboard')}}">SIMS</a>
+    </nav>
+    <div class="row" style="background: #e0e0e0;">
+      <div class="col-2 rounded pt-3" style="background: #414141;height:100vh;">
+        <div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a
+                class="nav-link text-light"
+                style="font-size:larger"
+                href="{{url_for('core.dashboard')}}"
+                ><i class="fas fa-tachometer-alt p-2"></i>Dashboard</a
+              >
+            </li>
+          </ul>
+        </div>
+        <ul class="nav flex-column">
+          <li class="nav-item p-2">
+            <a
+              class="nav-link text-light"
+              style="font-size:large"
+              href="{{url_for('inventory.home')}}"
+            >
+              <i class="fas fa-warehouse mr-2"></i>Inventory
+            </a>
+          </li>
+          <li class="nav-item p-2">
+            <a class="nav-link  text-light" style="font-size:large" href="#"
+              ><i class="fas fa-cubes mr-2"></i>Stocks</a
+            >
+          </li>
+          <li class="nav-item p-2">
+            <a class="nav-link  text-light" style="font-size:large" href="{{url_for('bills.home')}}"
+              ><i class="fas fa-file-invoice mr-2"></i>Bills</a
+            >
+          </li>
+          <li class="nav-item p-2">
+            <a class="nav-link  text-light" style="font-size:large" href="#"
+              ><i class="fas fa-chart-pie mr-2"></i>Accounts</a
+            >
+          </li>
+          <li class="nav-item p-2">
+            <a
+              class="nav-link  text-light"
+              style="font-size:large"
+              href="{{url_for('auth.logout')}}"
+              ><i class="fas fa-sign-out-alt mr-2"></i>logout</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col" style="background: #e0e0e0;overflow:auto">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

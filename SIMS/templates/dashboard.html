@@ -1,0 +1,110 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<div class="row">
+  <div class="col-sm">
+    <h3 class="ml-4 mt-3">
+      Dashboard
+      <span class="ml-2 mt-4" style="font-size:large;">Control Panel</span>
+    </h3>
+  </div>
+  <div class="col"><a class="float-right p-3 mr-5" href="#">link</a></div>
+</div>
+
+<div class="row">
+  <div
+    class=" ml-5 mt-2 card"
+    style="height:110px;width:260px;background:#29b6f6; border-radius:2px;"
+  >
+    <div class="row">
+      <div class="col">
+        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+          Current Status
+        </p>
+      </div>
+      <div class="col">
+        <i
+          class="fas fa-shopping-cart ml-5 mt-3"
+          style="font-size:40px;opacity:0.7"
+        ></i>
+      </div>
+    </div>
+    <div align="center" class="col mt-4" style="background: #039be5;">
+      <a class="text-light" style="text-decoration:none;" href="#"
+        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+      ></a>
+    </div>
+  </div>
+  <div
+    class="ml-5 mt-2 card"
+    style="height:110px;width: 260px; background:#4caf50;border-radius:2px;"
+  >
+    <div class="row">
+      <div class="col">
+        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+          Production
+        </p>
+      </div>
+      <div class="col">
+        <i
+          class="fas fa-clipboard-check ml-5 mt-3"
+          style="font-size:40px;opacity:0.7"
+        ></i>
+      </div>
+    </div>
+    <div align="center" class="col mt-4" style="background: #2e7d32;">
+      <a class="text-light" style="text-decoration:none;" href="#"
+        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+      ></a>
+    </div>
+  </div>
+  <div
+    class="ml-5 mt-2 card"
+    style="height:110px;width: 260px;background:#ffab00;border-radius:2px;"
+  >
+    <div class="row">
+      <div class="col">
+        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+          PO & Deadlines
+        </p>
+      </div>
+      <div class="col">
+        <i
+          class="fas fa-exclamation-triangle ml-5 mt-3"
+          style="font-size:40px;opacity:0.7"
+        ></i>
+      </div>
+    </div>
+
+    <div align="center" class="col mt-4" style="background: #ff8f00;">
+      <a class="text-light" style="text-decoration:none;" href="#"
+        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+      ></a>
+    </div>
+  </div>
+  <div
+    class="ml-5 mt-2 card"
+    style="height:110px;width: 260px;background:#f44336;border-radius:2px;"
+  >
+    <div class="row">
+      <div class="col">
+        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+          Due Payments
+        </p>
+      </div>
+      <div class="col">
+        <a
+          ><i
+            class="fas fa-receipt ml-5 mt-3"
+            style="font-size:40px;opacity:0.7"
+          ></i
+        ></a>
+      </div>
+    </div>
+    <div align="center" class="col mt-4" style="background: #c62828;">
+      <a class="text-light" style="text-decoration:none;" href="#"
+        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+      ></a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

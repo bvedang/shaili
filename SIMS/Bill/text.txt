@@ -1,0 +1,58 @@
+invoice_number = form.invoice_number.data
+        order_number = form.order_number.data
+        invoice_date = form.invoice_date.data
+        state = form.state.data
+        state_code = form.state_code.data
+        lr_date = form.lr_date.data
+        buyer_name = form.buyer_name.data
+        buyer_address1 = form.buyer_address1.data
+        buyer_address2 = form.buyer_address2.data
+        if form.same_as_above:
+            consignee_name = buyer_name
+            consignee_address1 = buyer_address1
+            consignee_address2 = buyer_address2
+        else:
+            consignee_name = form.consignee_name.data
+            consignee_address1 = form.consignee_address1.data
+            consignee_address2 = form.consignee_address2.data
+        gstin = form.gstin.data
+        buyer_state = form.buyer_state.data
+        buyer_state_code = form.buyer_state_code.data
+        goods_name = form.goods_name.data
+        goods_batch_number = form.goods_batch_number.data
+        goods_mfg_date = form.goods_mfg_date.data
+        goods_retest_date = form.goods_retest_date.data
+        goods_packing_detail = form.goods_packing_detail.data
+        hsn = form.hsn.data
+        quantity = form.quantity.data
+        quantity_code = form.quantity_code.data
+        rate_per_unit = form.rate_per_unit.data
+        value = quantity*rate_per_unit
+        cgst = form.cgst.data
+        sgst = form.sgst.data
+        igst = form.igst.data
+        cgst_value = (cgst/100)*value
+        sgst_value = (sgst/100)*value
+        igst_value = (igst/100)*value
+        tax_amount = cgst+sgst+igst
+        grand_total = tax_amount+value
+        remark = form.remark.data
+
+
+bill = render_template('bill_generator_pdf.html',invoice_number=invoice_number,invoice_date=invoice_date,
+        order_number=order_number,state=state,state_code=state_code,lr_date=lr_date,buyer_name=buyer_name,
+        buyer_address1=buyer_address1,buyer_address2=buyer_address2,consignee_name=consignee_name,consignee_address1=consignee_address1,
+        consignee_address2=consignee_address2,gstin=gstin,buyer_state=buyer_state,buyer_state_code=buyer_state_code,
+        goods_name=goods_name,goods_batch_number=goods_batch_number,goods_mfg_date=goods_mfg_date,goods_retest_date=goods_retest_date,goods_packing_detail=goods_packing_detail,hsn=hsn,quantity_code=quantity_code,quantity=quantity,
+        rate_per_unit=rate_per_unit,value=value,tax_amount=tax_amount,grand_total=grand_total,cgst=cgst,sgst=sgst,igst=igst,remark=remark,cgst_value=cgst_value,sgst_value=sgst_value,igst_value=igst_value)
+        option = {
+            'page-size':'A4',
+            'margin-top':'2in',
+            'margin-bottom':'0.15in',
+            'margin-left':'0.15in',
+            'margin-right':'o.15in'
+        }
+        pdf = pdfkit.from_string(bill,False,options=option)
+        response = make_response(pdf)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] = 'attachment; filename=output.pdf'

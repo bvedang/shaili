@@ -1,0 +1,317 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<div
+  class="col-10 bg-white shadow rounded"
+  style="margin-left: 100px; margin-top:60px"
+>
+  <div style="text-align: center;">
+    <h3 class="display-4" style="font-size: xxx-large;">
+      Fill this form to generate New bill.
+    </h3>
+  </div>
+
+  <form methods="POST" action="{{url_for('bills.generate_bill')}}" class="pb-2">
+    <div class="row p-1">
+      <div class="col">
+        <label for="invoice_no">Invoice No.</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="invoice_number"
+          id="invoice_no"
+        />
+      </div>
+      <div class="col">
+        <label for="order_no">Order No:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="order_number"
+          id="order_no"
+        />
+      </div>
+      <div class="col">
+        <label for="invoice_date">Invoice Date.</label>
+        <input
+          required
+          class="form-control"
+          type="date"
+          name="invoice_date"
+          id="invoice_date"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="challan_no">Challan No:</label>
+        <input required type="number" name="challan_no" id="challan_no" class="form-control" value="1">
+      </div>
+      <div class="col">
+        <label for="challan_date">Challan No:</label>
+        <input required type="date" name="challan_date" id="challan_date" class="form-control">
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="state">State</label>
+        <input
+          value="Gujarat"
+          required
+          class="form-control"
+          type="text"
+          name="state"
+          id="state"
+        />
+      </div>
+      <div class="col">
+        <label for="state_code">State Code:</label>
+        <input
+          value="24"
+          class="form-control"
+          type="number"
+          name="state_code"
+          id="state_code"
+        />
+      </div>
+      <div class="col">
+        <label for="lr_date">L.R. Date :</label>
+        <input class="form-control" type="date" name="lr_date" id="lr_date" />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="buyer_name">Buyer's Name</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="buyer_name"
+          id="buyer_name"
+        />
+      </div>
+      <div class="col">
+        <label for="buyer_add1">'Buyer Address 1:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="buyer_add1"
+          id="buyer_add1"
+        />
+      </div>
+      <div class="col">
+        <label for="buyer_add2">'Buyer Address 2:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="buyer_add2"
+          id="buyer_add2"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="consignee_name">Consignee Name</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="consignee_name"
+          id="consignee_name"
+        />
+      </div>
+      <div class="col">
+        <label for="consignee_add1">Consignee Address 1:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="consignee_add1"
+          id="consignee_add1"
+        />
+      </div>
+      <div class="col">
+        <label for="consignee_add2">Consignee Address 2:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="consignee_add2"
+          id="consignee_add2"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="gstin">GSTIN</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="gstin"
+          id="gstin"
+        />
+      </div>
+      <div class="col">
+        <label for="buyer_state">State</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="buyer_state"
+          id="buyer_state"
+        />
+      </div>
+      <div class="col">
+        <label for="buyer_state_code">State Code:-</label>
+        <input
+          required
+          class="form-control"
+          type="number"
+          name="buyer_state_code"
+          id="buyer_state_code"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="goods_name">Goods Name</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="goods_name"
+          id="goods_name"
+        />
+      </div>
+      <div class="col">
+        <label for="goods_batch">Goods Batch No:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="goods_batch"
+          id="goods_batch"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="goods_mfg_date">Goods Manufacturing Date:</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="goods_mfg_date"
+          id="goods_mfg_date"
+        />
+      </div>
+      <div class="col">
+        <label for="goods_retest">Batch Retest Date</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="goods_retest"
+          id="goods_retest"
+        />
+      </div>
+      <div class="col">
+        <label for="packing_detail">Packing Detail</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="packing_detail"
+          id="packing_detail"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="hsn">HSN SAC</label>
+        <input
+          required
+          class="form-control"
+          type="number"
+          name="hsn"
+          id="hsn"
+        />
+      </div>
+      <div class="col">
+        <label for="qty">Qty</label>
+        <input
+          required
+          class="form-control"
+          type="number"
+          name="qty"
+          id="qty"
+        />
+      </div>
+      <div class="col">
+        <label for="qty_code">Quantity Code</label>
+        <input
+          required
+          class="form-control"
+          type="text"
+          name="qty_code"
+          id="qty_code"
+        />
+      </div>
+      <div class="col">
+        <label for="rate">Rate Per Unit(Rs)</label>
+        <input
+          required
+          class="form-control"
+          type="number"
+          name="rate"
+          id="rate"
+        />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <label for="cgst">Add CGST</label>
+        <input class="form-control" type="number" name="cgst" id="cgst" />
+      </div>
+      <div class="col">
+        <label for="sgst">Add SGST</label>
+        <input
+          required
+          class="form-control"
+          type="number"
+          name="sgst"
+          id="sgst"
+        />
+      </div>
+      <div class="col">
+        <label for="igst">Add IGST</label>
+        <input class="form-control" type="number" name="igst" id="igst" />
+      </div>
+    </div>
+    <div class="row p-1">
+      <div class="col">
+        <textarea
+          class="form-control"
+          name="remark"
+          id="remark"
+          placeholder="Remarks"
+        ></textarea>
+      </div>
+    </div>
+    <div style="text-align:center" class="row p-2">
+      <div class="col">
+        <input
+          class="btn btn-success"
+          type="submit"
+          name="submit"
+          value="Generate"
+          id="invoice_no"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

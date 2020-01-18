@@ -1,0 +1,13 @@
+{% extends 'ls_stage_1.html' %} {% block activity %}
+<div class="col mt-3 border border-dark" style="overflow: auto;">
+  <form method="POST" action="#" style="overflow: auto;">
+    <input
+      type="submit"
+      value="Export"
+      class="btn btn-success float-right m-1"
+    />
+  </form>
+
+  {{between_table}}
+</div>
+{% endblock activity %}

@@ -1,0 +1,59 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<div class="row">
+  <div
+    class="col-8 shadow rounded bg-white"
+    style="margin-left: 25px; margin-top:40px"
+  >
+    <h3 class="display-4" style="font-size:xx-large;text-align:center">
+      Recently Generated Bills
+    </h3>
+    
+      {{table}}
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div
+    align="center"
+    class="col-3 p-0 shadow"
+    style="margin-left: 25px; margin-top:40px;width:min-content;height:min-content;overflow:auto"
+  >
+ <div class=" p-3 shadow rounded bg-white ">
+      <h3 class="display-4" style="font-size: x-large;text-align:center">
+        Generate New Bill & Challan
+      </h3>
+      <a
+        class="btn btn-outline-success"
+        style="padding: 10px;margin-bottom:10px"
+        href="{{url_for('bills.generate_bill')}}"
+        >New Bill</a
+      >
+    </div>
+    <div class="p-3 mt-2 shadow rounded bg-white">
+      <h3 class="display-4" style="font-size:x-large;text-align:center;">
+        Generate only Challan
+      </h3>
+      <a class="btn btn-outline-success"
+      style="padding: 10px;margin-bottom:10px"
+      href="{{url_for('bills.generate_challan')}}">New Challan</a>
+    </div>
+    <div class="mt-2 p-3 shadow rounded bg-white">
+      <h3 class="display-4 " style="font-size: x-large;">
+        Upcoming Reminders
+      </h3>
+      <p class="p-2">1</p>
+      <p class="p-2">2</p>
+      <p cl
+ass="p-2">3</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

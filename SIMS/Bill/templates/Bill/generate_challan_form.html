@@ -1,0 +1,29 @@
+{% extends 'dashboard_base.html' %} {% block content %}
+<form action="{{url_for('bills.generate_challan')}}" method="POST">
+  <div
+    class="col-10 bg-white shadow rounded"
+    style="margin-left: 100px; margin-top:60px"
+  >
+    <div class="row rounded shadow bg-white">
+      <div class="col">
+        <label for="challan_no">Challan No:</label>
+        <input
+          type="text"
+          name="challan_no"
+          id="challan_no"
+          class="form-control"
+        />
+      </div>
+      <div class="col">
+        <label for="challan_date">Challan Date</label>
+        <input
+          type="date"
+          name="challan_date"
+          id="challan_date"
+          class="form-control"
+        />
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

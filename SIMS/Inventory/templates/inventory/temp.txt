@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+    <thead>
+      <tr style="font-size:small;">
+        <th scope="col">FDA Batch Number</th>
+        <th scope="col">Starting Date</th>
+        <th scope="col">Salicylic Acid</th>
+        <th scope="col">DMS</th>
+        <th scope="col">Caustic Soda Flakes</th>
+        <th scope="col">HCl</th>
+        <th scope="col">Water</th>
+        <th scope="col">Wet Cake</th>
+        <th scope="col">DRY Output</th>
+        <th scope="col">P_Yield</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if entries %} {% for temp in entries %}
+      <tr style="font-size:small;">
+        <th>{{ temp.fda_batch_no }}</th>
+        <th>{{ temp.starting_date }}</th>
+        <th>{{ temp.salicylic_acid }}</th>
+        <th>{{ temp.dms }}</th>
+        <th>{{ temp.caustic_soda_flakes }}</th>
+        <th>{{ temp.hcl }}</th>
+        <th>{{ temp.water }}</th>
+        <th>{{ temp.wet_cake }}</th>
+        <th>{{ temp.dry_output }}</th>
+        <th>{{ temp.p_yeild }}</th>
+      </tr>
+      {% endfor %} {% endif %}
+    </tbody>
+  </table>

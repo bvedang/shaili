@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+      }
+
+      h1 {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+      }
+
+      thead {
+        border: solid;
+        border-width: 1px;
+      }
+
+      .container {
+        margin: 0;
+        border-style: solid;
+        border-width: 1px;
+        margin-top: 130px;
+        font-weight: bold;
+      }
+      p {
+        margin: 0px;
+      }
+
+      th {
+        border: solid;
+        border-width: 1px;
+        font-size: 16px;
+      }
+      .right-align {
+        width: 22%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <table cellspacing="0" style="width: 100%;">
+        <thead>
+          <h1>TAX INVOICE</h1>
+        </thead>
+        <tr>
+          <th style="text-align:left">Reverse Charge</th>
+          <th style="text-align:left" colspan="1">Not Applicable</th>
+          <th style="text-align: left;">Order No:</th>
+          <th style="text-align: left;">{{order_number}}</th>
+          <th>
+            <input type="checkbox" style="text-align:center" />
+          </th>
+          <th style="text-align:left" class="right-align">
+            : Original for Buyer
+          </th>
+        </tr>
+        <tr>
+          <th style="text-align:left">Invoice No.</th>
+          <th style="text-align:left">{{invoice_number}}</th>
+          <th style="text-align:left">Challan no:</th>
+          <th style="text-align:left">{{challan_no}}</th>
+          <th>
+            <input type="checkbox" style="text-align:center" />
+          </th>
+          <th style="text-align:left">: Duplicate for Transport</th>
+        </tr>
+        <tr>
+          <th style="text-align:left">Invoice Date.</th>
+          <th style="text-align:left" colspan="1">{{invoice_date}}</th>
+          <th style="text-align:left">Challan Date:</th>
+          <th style="text-align:left">{{challan_date}}</th>
+          <th>
+            <input type="checkbox" style="text-align:center" />
+          </th>
+          <th style="text-align:left">: Triplicate for accessee</th>
+        </tr>
+        <tr>
+          <th style="text-align:left">State</th>
+          <th style="text-align:left">{{state}}</th>
+          <th style="text-align:left">State Code:</th>
+          <th style="text-align:left">{{state_code}}</th>
+          <th>
+            <input type="checkbox" style="text-align:center" />
+          </th>
+          <th style="text-align:left">: Extra Copy</th>
+        </tr>
+      </table>
+
+      <table cellspacing="0" style="width: 100%;text-align:left">
+        <tr>
+          <th style="width:35%">GSTIN :</th>
+          <th>24ACCFS5775L1ZN</th>
+          <th rowspan="4" style="width:28.4%"></th>
+        </tr>
+        <tr>
+          <th>PAN No.:</th>
+          <th>ACCFS5775L</th>
+        </tr>
+        <tr>
+          <th>Transporter :</th>
+          <th>Local Tempo</th>
+        </tr>
+        <tr>
+          <th>L.R. Date :</th>
+          <th>{{lr_date}}</th>
+        </tr>
+      </table>
+
+      <table cellspacing="0" style="width:100%;text-align:left">
+        <tr>
+          <th style="width:45%">Buyer's Name and Address</th>
+          <th>Consignee Name and Address (if other than buyer)</th>
+        </tr>
+      </table>
+
+      <table cellspacing="0" style="width:100%; text-align:left">
+        <tr>
+          <th style="width:45%;height:auto">
+            <p>Name :-</p>
+            <p style="margin-left: 10px;">{{buyer_name}}</p>
+            <p style="margin-left: 10px;">{{buyer_add1}}</p>
+            <p style="margin-left: 10px;">{{buyer_add2}}</p>
+          </th>
+          <th>
+            <p>Name :-</p>
+            <p style="margin-left: 10px;">{{consignee_name}}</p>
+            <p style="margin-left: 10px;">{{consignee_add1}}</p>
+            <p style="margin-left: 10px;">{{consignee_add2}}</p>
+          </th>
+        </tr>
+      </table>
+
+      <table cellspacing="0" style="width: 100%;text-align:left">
+        <tr>
+          <th style="width: 20%;">GSTIN /UIN</th>
+          <th style="width: 25%;" colspan="2">{{gstin}}</th>
+          <th>GSTIN /UIN</th>
+          <th colspan="2">{{gstin}}</th>
+        </tr>
+        <tr>
+          <th>State :</th>
+          <th>{{buyer_state}}</th>
+          <th>State Code:-{{buyer_state_code}}</th>
+          <th>State :</th>
+          <th style="width: 20%;">Gujarat</th>
+          <th>State Code:- {{buyer_state_code}}</th>
+        </tr>
+      </table>
+
+      <table cellspacing="0" style="width: 100%;text-align:left">
+        <tr>
+          <th style="width: 10%;">No.</th>
+          <th style="width: 35%;">Description of Goods/Services</th>
+          <th>HSN SAC</th>
+          <th style="width: 5%;">Quantity Code</th>
+          <th style="width: 7%;">Qty</th>
+          <th style="width: 6%;">Rate Per Unit (Rs.)</th>
+          <th style="width: 10%;">Value (Rs.)</th>
+          <th>Less Discount (Rs.)</th>
+          <th>Taxable Value (Rs.)</th>
+        </tr>
+        <tr>
+          <th style="padding:0%;border:0;text-align:center">1</th>
+          <th style="padding: 10px;">{{goods_name}}</th>
+          <th style="border-bottom:0;text-align:center">{{hsn}}</th>
+          <th style="border-bottom:0;text-align:center">{{qty_code}}</th>
+          <th style="border-bottom:0;text-align:center">{{qty}}</th>
+          <th style="border-bottom:0;text-align:center">{{rate}}</th>
+          <th style="border-bottom:0;text-align:center">{{value}}</th>
+          <th style="border-bottom:0;text-align:center">0</th>
+          <th style="border-bottom:0;text-align:end">{{value}}</th>
+        </tr>
+        <tr>
+          <th style="border: 0px;"></th>
+          <th>
+            <p style="margin-left:10px">
+              Batch No. : {{goods_batch}}
+            </p>
+            <p style="margin-left:10px">
+              Mfg. Date : {{goods_mfg_date}}
+            </p>
+            <p style="margin-left:10px">
+              Retest Date : {{goods_retest}}
+            </p>
+            <p style="margin-left:10px">
+              Packing Detail : {{packing_detail}}
+            </p>
+          </th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+          <th style="border-top: 0px;"></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th colspan="3" style="text-align: end;padding-right:15px">Total</th>
+          <th>{{qty}}</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th style="text-align: end;">{{value}}</th>
+        </tr>
+        <tr>
+          <th colspan="5" rowspan="3">
+            Total Invoice Value in Words: Nine Lakhs fourteen thousand five
+            hundred only.
+          </th>
+          <th>Add SGST</th>
+          <th></th>
+          <th>@{{sgst}}%</th>
+          <th style="text-align: end;">{{sgst_value}}</th>
+        </tr>
+        <tr>
+          <th>Add CGST</th>
+          <th></th>
+          <th>@{{cgst}}%</th>
+          <th style="text-align: end;">{{cgst_value}}</th>
+        </tr>
+        <tr>
+          <th>Add IGST</th>
+          <th></th>
+          <th></th>
+          <th style="text-align: end;"></th>
+        </tr>
+        <tr>
+          <th  rowspan="4" colspan="5">
+            <p style="text-align: center;">: Bank Details:</p>
+            <p style="margin-left: 15px;">Bank of Maharashtra</p>
+            <p style="margin-left: 15px;">Bank Account Number: 60115358878</p>
+            <p style="margin-left: 15px;">Bank Branch: Piraman 393002 City : Ankleshwar</p>
+            <p style="margin-left: 15px;">IFSC Code : MAHB0000628</p>
+          </th>
+          <th colspan="3">Tax Amount : GST (Rs.)</th>
+          <th style="text-align: end;">{{tax_amount}}</th>
+        </tr>
+        <tr>
+          <th colspan="3">GST Payable on Reverse Charge</th>
+          <th style="text-align: end;"></th>
+        </tr>
+        <tr>
+          <th colspan="3">Round off</th>
+          <th style="text-align: end;">0</th>
+        </tr>
+        <tr>
+          <th colspan="3">Grand Total</th>
+          <th style="text-align: end;">{{grand_total}}</th>
+        </tr>
+        <tr>
+          <th colspan="5">
+            <p style="margin-bottom: 140px;">Remarks</p>
+          </th>
+          <th colspan="4">
+            <p style="padding-bottom:140px;">For,Shaili Pharma Chem</p>
+            <p>AUTHORISED SIGNATORY</p>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
