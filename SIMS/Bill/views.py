@@ -21,7 +21,6 @@ def home():
     return render_template('bill_home.html',table=table)
 
 # Bill Challan Form
-
 @bills.route('/generate_challan',methods=['GET','POST'])
 @login_required
 def generate_challan():
@@ -34,7 +33,7 @@ def generate_challan():
 def generate_bill():
     invoice_number = request.args.get('invoice_number')
     order_number = request.args.get('order_number')
-    invoice_date = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d')
+    invoice_date = request.args.get('invoice_date')
     challan_no = request.args.get('challan_no')
     state = request.args.get('state')
     state_code = request.args.get('state_code')
@@ -56,8 +55,6 @@ def generate_bill():
     hsn = request.args.get('hsn')
     qty_code = request.args.get('qty_code')
     remarks = request.args.get('Remarks')
-    reminder_day = float(request.args.get('reminder'))
-    reminder_date = invoice_date + datetime.timedelta(days=reminder_day)
     if invoice_number is not None:
         invoice_date = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d').strftime('%d-%m-%Y')
         challan_date = datetime.datetime.strptime(request.args.get('challan_date'),'%Y-%m-%d').strftime('%d-%m-%Y')
@@ -83,6 +80,9 @@ def generate_bill():
             'margin-right':'0.15in',
             'margin-left':'0.15in'
         }
+        reminder_day = float(request.args.get('reminder'))
+        new_invoice = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d')
+        reminder_date = new_invoice + datetime.timedelta(days=reminder_day)
         pdf = pdfkit.from_string(bill,False,options=option)
         billspdf = BillsPDF(name=invoice_number+'.pdf',bill_pdf=pdf,grand_total=grand_total,reminder_date=reminder_date)
         db.session.add(billspdf)
