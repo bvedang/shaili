@@ -9,7 +9,8 @@ from SIMS.Bill.table import PDF_table
 
 bills = Blueprint('bills',__name__,template_folder='templates/Bill')
 
-config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
+#config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
+#while uploading to server remove config from comment
 
 @bills.route('/home')
 @login_required
@@ -81,7 +82,7 @@ def generate_bill():
             'margin-right':'0.15in',
             'margin-left':'0.15in'
         }
-        pdf = pdfkit.from_string(bill,False,options=option,configuration=config)
+        pdf = pdfkit.from_string(bill,False,options=option)
         billspdf = BillsPDF(name=invoice_number+'.pdf',bill_pdf=pdf,grand_total=grand_total)
         db.session.add(billspdf)
         db.session.commit()
