@@ -134,6 +134,7 @@ class BillsPDF(db.Model):
     date = db.Column(db.Date,default=date.today,nullable=False)
     grand_total = db.Column(db.Float,nullable=False)
     reminder_given = db.Column(db.Boolean,default=False)
+    reminder_date = db.Column(db.Date,nullable=False)
 
 class BillsPDF_view(ModelView):
     column_exclude_list = ('bill_pdf')

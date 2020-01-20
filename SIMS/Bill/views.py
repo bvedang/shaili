@@ -12,6 +12,7 @@ bills = Blueprint('bills',__name__,template_folder='templates/Bill')
 #config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
 #while uploading to server remove config from comment
 
+# Bill Home
 @bills.route('/home')
 @login_required
 def home():
@@ -19,21 +20,21 @@ def home():
     table = PDF_table(entries,classes=['table','table-hover'])
     return render_template('bill_home.html',table=table)
 
+# Bill Challan Form
+
 @bills.route('/generate_challan',methods=['GET','POST'])
 @login_required
 def generate_challan():
     return render_template('generate_challan_form.html')
 
-
-
-
+# Bill Generator Form
 
 @bills.route('/generate_bill',methods=['GET','POST'])
 @login_required
 def generate_bill():
     invoice_number = request.args.get('invoice_number')
     order_number = request.args.get('order_number')
-    invoice_date = request.args.get('invoice_date')
+    invoice_date = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d')
     challan_no = request.args.get('challan_no')
     state = request.args.get('state')
     state_code = request.args.get('state_code')
@@ -54,10 +55,10 @@ def generate_bill():
     packing_detail = request.args.get('packing_detail')
     hsn = request.args.get('hsn')
     qty_code = request.args.get('qty_code')
-    #igst = float(request.args.get('igst'))
     remarks = request.args.get('Remarks')
+    reminder_day = float(request.args.get('reminder'))
+    reminder_date = invoice_date + datetime.timedelta(days=reminder_day)
     if invoice_number is not None:
-        #filename = request.args.get('filename')
         invoice_date = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d').strftime('%d-%m-%Y')
         challan_date = datetime.datetime.strptime(request.args.get('challan_date'),'%Y-%m-%d').strftime('%d-%m-%Y')
         qty = float(request.args.get('qty'))
@@ -83,7 +84,7 @@ def generate_bill():
             'margin-left':'0.15in'
         }
         pdf = pdfkit.from_string(bill,False,options=option)
-        billspdf = BillsPDF(name=invoice_number+'.pdf',bill_pdf=pdf,grand_total=grand_total)
+        billspdf = BillsPDF(name=invoice_number+'.pdf',bill_pdf=pdf,grand_total=grand_total,reminder_date=reminder_date)
         db.session.add(billspdf)
         db.session.commit()
         file_data = BillsPDF.query.filter_by(name=invoice_number+'.pdf').first()
