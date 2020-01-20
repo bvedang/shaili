@@ -130,6 +130,7 @@ class LS_stage_3_view(ModelView):
 class BillsPDF(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(300),nullable=False)
+    buyer_name = db.Column(db.String(300),nullable=False)
     bill_pdf = db.Column(db.LargeBinary,nullable=False)
     date = db.Column(db.Date,default=date.today,nullable=False)
     grand_total = db.Column(db.Float,nullable=False)

@@ -5,7 +5,8 @@ import datetime
 from io import BytesIO
 from SIMS.models import BillsPDF
 from SIMS import db
-from SIMS.Bill.table import PDF_table
+from flask_paginate import Pagination,get_page_parameter
+from sqlalchemy import desc
 
 bills = Blueprint('bills',__name__,template_folder='templates/Bill')
 
@@ -16,9 +17,12 @@ bills = Blueprint('bills',__name__,template_folder='templates/Bill')
 @bills.route('/home')
 @login_required
 def home():
-    entries = BillsPDF.query.filter(BillsPDF.date).limit(10).all()
-    table = PDF_table(entries,classes=['table','table-hover'])
-    return render_template('bill_home.html',table=table)
+    page = request.args.get(get_page_parameter(),type=int,default=1)
+    entries = BillsPDF.query.filter(BillsPDF.date).all()
+    entries_len = len(entries)
+    pagination = Pagination(page=page,total=entries_len,)
+    update_entries = BillsPDF.query.order_by(desc(BillsPDF.reminder_date)).limit(10).all()
+    return render_template('bill_home.html',entries=entries,update_entries=update_entries,pagination=pagination)
 
 # Bill Challan Form
 @bills.route('/generate_challan',methods=['GET','POST'])
@@ -84,7 +88,7 @@ def generate_bill():
         new_invoice = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d')
         reminder_date = new_invoice + datetime.timedelta(days=reminder_day)
         pdf = pdfkit.from_string(bill,False,options=option)
-        billspdf = BillsPDF(name=invoice_number+'.pdf',bill_pdf=pdf,grand_total=grand_total,reminder_date=reminder_date)
+        billspdf = BillsPDF(name=invoice_number+'.pdf',buyer_name=buyer_name,bill_pdf=pdf,grand_total=grand_total,reminder_date=reminder_date)
         db.session.add(billspdf)
         db.session.commit()
         file_data = BillsPDF.query.filter_by(name=invoice_number+'.pdf').first()
