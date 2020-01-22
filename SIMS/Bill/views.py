@@ -86,7 +86,7 @@ def generate_bill():
         }
         reminder_day = float(request.args.get('reminder'))
         new_invoice = datetime.datetime.strptime(request.args.get('invoice_date'),'%Y-%m-%d')
-        reminder_date = new_invoice + datetime.timedelta(days=reminder_day)
+        reminder_date = (new_invoice + datetime.timedelta(days=reminder_day)).strftime('%d-%m-%Y')
         pdf = pdfkit.from_string(bill,False,options=option)
         billspdf = BillsPDF(name=invoice_number+'.pdf',buyer_name=buyer_name,bill_pdf=pdf,grand_total=grand_total,reminder_date=reminder_date)
         db.session.add(billspdf)
