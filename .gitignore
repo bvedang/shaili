@@ -7,3 +7,6 @@ Bill/__pycache__
 core/__pycache__
 Inventory/__pycache__
 .vscode
+
+# gitignore
+.gitignore
