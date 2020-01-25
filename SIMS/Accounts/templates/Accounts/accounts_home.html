@@ -1,1 +1,82 @@
-{% extends 'dashboard_base.html' %} {% block content %} {% endblock %}
+{% extends 'dashboard_base.html' %} {% block content %}
+<div
+  align="center"
+  style="position:absolute;width: 175px;height:44px;background:#414141;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px"
+>
+  <p style="font-size:24px;color:#ffffff">Accounts</p>
+</div>
+
+<div
+  class="row"
+  style="height: 450px; width:1100px; margin-top:120px;margin-left:75px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;mix-blend-mode:normal;"
+>
+  <div class="col" align="center">
+    <p style="font-size: 24px;margin-top:20px">
+      Expenses : January
+    </p>
+    <table class="table table-hover">
+      <thead align="center" style="font-size: 20px;">
+        <td>Expense Categories</td>
+        <td>Expense Amount</td>
+      </thead>
+      <tr align="center" style="font-size: 18px;">
+        <td>Raw Material</td>
+        <td>Rs 897979</td>
+      </tr>
+      <tr align="center" style="font-size: 18px;">
+        <td>Raw Material</td>
+        <td>Rs 897979</td>
+      </tr>
+      <tr align="center" style="font-size: 18px;">
+        <td>Raw Material</td>
+        <td>Rs 897979</td>
+      </tr>
+      <tr align="center" style="font-size: 18px;">
+        <td>Raw Material</td>
+        <td>Rs 897979</td>
+      </tr>
+      <tr align="center" style="font-size: 18px;">
+        <td>Raw Material</td>
+        <td>Rs 897979</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col mt-3">
+    {{plot|safe}}
+  </div>
+</div>
+
+<div
+  class="row"
+  style="margin-top:40px;margin-left:75px;margin-bottom:40px;width:1100px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;mix-blend-mode:normal;"
+>
+  <div class="col p-3">
+    <p style="font-size: 22px;text-align:center">Add Expense</p>
+    <form align="center" action="#" style="margin-top: 35px;" class="form-inline">
+      <div class="form-group p-1">
+        <label for="amount">Amount</label>
+        <input type="number" class="form-control" id="amount" placeholder="Expense amount...." />
+      </div>
+      <div class="form-group p-1 pl-3">
+        <label for="message">Expense Message</label>
+        <input type="text" class="form-control" id="message" placeholder="Expense Message...." />
+      </div>
+      <div class="form-group p-1 pl-3">
+        <label for="expense-category">Example select</label>
+        <select class="form-control" id="expense-category">
+        <option>Raw Material</option>
+        <option>Cash</option>
+        <option>Miscellaneous</option>
+        <option>Fix Payment</option>
+        <option>Project Expense</option>
+        </select>
+      </div>
+      <div class="form-group p-1 pl-5">
+          <input type="submit" class="btn btn-primary" value="Update">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
