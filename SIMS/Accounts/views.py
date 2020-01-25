@@ -1,6 +1,5 @@
 from flask import Blueprint,redirect,url_for,request,render_template
 from flask_login import login_required
-import matplotlib.pyplot as plt,mpld3
 
 
 accounts = Blueprint('accounts',__name__,template_folder='templates/Accounts')
