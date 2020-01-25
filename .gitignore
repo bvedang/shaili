@@ -1,0 +1,9 @@
+#__pycache__ folder
+__pycache__
+SIMS/__pycache__
+Accounts/__pycache__
+auth/__pycache__
+Bill/__pycache__
+core/__pycache__
+Inventory/__pycache__
+.vscode
