@@ -8,14 +8,10 @@ accounts = Blueprint('accounts',__name__,template_folder='templates/Accounts')
 @login_required
 @accounts.route('/home',methods=['GET','POST'])
 def home():
-    labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-    sizes = [15, 30, 45, 10]
-    explode = (0, 0.1, 0, 0)
-    fig1, ax1 = plt.subplots(figsize=(6,4))
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',shadow=True, startangle=90,textprops={'fontsize':16})
-    ax1.axis('equal')
-    ax1.legend(labels,title="Animals",loc="upper right")
-    ax1.set_title('Expense Chart')
-    plot = mpld3.fig_to_html(fig1,template_type='general')
-    plt.close('all')
-    return render_template('accounts_home.html',plot=plot)
+    legend = 'Monthly Data'
+    colors = ['rgb(255, 99, 132,)','rgba(54, 162, 235)','rgba(255, 206, 86)','rgba(75, 192, 192)',
+              'rgba(153, 102, 255)','rgba(255, 159, 64)','#fd5e53','#c9485b','#f0134d','#cc0066',
+              '#3e206d','#2c786c']
+    labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    values = [100, 90, 80, 70, 60, 90, 70, 80]
+    return render_template('accounts_home.html',values=values,legend=legend,labels=labels,colors=colors)
