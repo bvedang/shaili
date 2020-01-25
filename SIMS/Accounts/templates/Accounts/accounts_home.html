@@ -54,7 +54,7 @@
         data: {
           datasets: [{
               data: [{% for i in values %}{{i}},
-                     {% endfor %}],
+              {% endfor %}],
               backgroundColor:[{% for i in colors %} '{{i}}',
               {% endfor %}],
               label:'{{legend}}'
