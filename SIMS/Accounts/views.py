@@ -53,3 +53,8 @@ def home():
         
         return redirect(url_for('accounts_home.home'))
     return render_template('accounts_home.html',legend=legend,labels=labels,colors=colors,form=form,values=values,table_values=table_values)
+
+@login_required
+@accounts_home.route('/home/Miscellaneous',methods=['GET','POST'])
+def miscellaneous():
+    pass

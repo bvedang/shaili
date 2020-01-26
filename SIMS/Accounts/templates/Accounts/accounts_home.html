@@ -1,11 +1,4 @@
-{% extends 'dashboard_base.html' %} {% block content %}
-<div
-  align="center"
-  style="position:absolute;width: 175px;height:44px;background:#414141;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px"
->
-  <p style="font-size:24px;color:#ffffff">Accounts</p>
-</div>
-
+{% extends 'accounts_index.html' %} {% block account %}
 <div
   class="row"
   style="height: auto; width:1100px; margin-top:120px;margin-left:85px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
@@ -110,7 +103,7 @@
           {{form.date.label}} {{form.date(class="form-control")}}
         </div>
         <div class="form-group p-1 pl-4 pt-4 mt-2">
-          {{form.update(class="btn btn-primary")}}
+          {{form.update(class="btn btn-info")}}
         </div>
       </div>
     </form>
