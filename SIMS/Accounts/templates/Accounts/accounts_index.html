@@ -14,18 +14,18 @@ border-radius: 2px;"
 >
   <p style="margin-top:7px">
     <a
-      class="pl-5"
+      class="pl-5 drop-down"
       style="text-decoration: none;font-size: 21px;color:#ffffff;"
       href="{{url_for('accounts_home.home')}}"
       >Home</a
     >
   </p>
-  <div class="dropdown show" style="margin-left: 80px;">
+  <div class="dropdown show drop-down" style="margin-left: 80px;">
     <a class="btn dropdown-toggle" style="background-color: #414141;color:#fff;font-size:20px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Category
     </a>
     <div class="dropdown-menu" style="background-color: #414141;" aria-labelledby="dropdownMenuLink;">
-      <a class="dropdown-item" style="font-size: 20px;color:#fff" href="#">Miscellaneous</a>
+      <a class="dropdown-item" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.miscellaneous')}}">Miscellaneous</a>
       <a class="dropdown-item" style="font-size: 20px;color:#fff" href="#">Cash</a>
       <a class="dropdown-item" style="font-size: 20px;color:#fff" href="#">Profit</a>
       <a class="dropdown-item" style="font-size: 20px;color:#fff" href="#">Project Payment</a>

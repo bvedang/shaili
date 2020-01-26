@@ -1,35 +1,30 @@
-.container {
-  margin: 0;
-  border-style: solid;
-  border-width: 1px;
-  margin-top: 130px;
-  font-weight: bold;
+.miscellaneous{
+  height: auto;
+  width: 1100px;
+  margin-top:120px;
+  margin-left:85px;
+  background:#ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;mix-blend-mode:normal;
 }
 
-.heading {
+.mic-table-info{
+  margin-top: 20px;
+  font-size: 28px;
+  font-family: Ubuntu, sans-serif;
+}
+
+.info-table{
+  width: min-content;
   text-align: center;
+  font-size: 24px;
 }
 
-p {
-  margin: 10px;
+.demo:hover{
+  background-color:black;
 }
 
-h1 {
-  margin: 0;
-  padding: 5px;
-}
 
-.row {
-  display: flex;
-}
-
-.col {
-  border-style: solid;
-  border-width: 1px;
-  flex-direction: column;
-}
-
-.border {
-  border-top: solid;
-  border-width: 1.5px;
+.graph-info{
+  font-size: 24px;
 }

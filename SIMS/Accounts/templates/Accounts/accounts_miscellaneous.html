@@ -1,0 +1,82 @@
+{% extends 'accounts_index.html' %} {% block account %}
+
+<div class="row miscellaneous">
+  <div class="col info-table" style="width: min-content;">
+    <h2 class="mic-table-info">Miscellaneous Expenses Entries</h2>
+    <table class="table table-hover ta-ble">
+      <thead style="font-size: 22px;">
+        <td>Expense Message</td>
+        <td>Amount</td>
+        <td>Date</td>
+      </thead>
+      {% for i,j,k in values %}
+      <tr style="font-size: 20px;">
+        <td>{{i}}</td>
+        <td>{{j}}</td>
+        <td>{{k}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col graph-info">
+    <canvas id="misbargraph" height="220"></canvas>
+    <script>
+      Chart.defaults.global.responsive = true;
+      var config = {
+          type:'bar',
+          data:{
+              datasets:[{
+                  data:[{% for i in amount %} {{i}},
+                  {% endfor %}],
+                  label:'Current Month',
+                  backgroundColor:['rgba(255, 99, 132)',
+                  'rgba(54, 162, 235)',
+                  'rgba(255, 206, 86)',
+                  'rgba(75, 192, 192)',
+                  'rgba(153, 102, 255)',
+                  'rgba(255, 159, 64)'],
+                  borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }],
+              labels:[{% for i in date %} "{{i}}",
+              {% endfor %}]
+          },
+          options: {
+              fontSizeL: 20,
+              scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                        }
+                    }]
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
+                title:{
+                    display:true,
+                    text:'Miscellaneous Expense',
+                    position:'top',
+                    fontSize:20
+                  },
+            }
+      }
+      var ctx = document.getElementById('misbargraph').getContext('2d');
+      var bargraph = new Chart(ctx,config)
+    </script>
+  </div>
+</div>
+
+{% endblock %}
