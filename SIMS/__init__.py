@@ -32,9 +32,9 @@ from SIMS.core.views import core
 from SIMS.auth.views import auth
 from SIMS.Inventory.views import inventory
 from SIMS.Bill.views import bills
-from SIMS.Accounts.views import accounts
+from SIMS.Accounts.views import accounts_home
 app.register_blueprint(core)
 app.register_blueprint(auth,url_prefix='/auth')
 app.register_blueprint(inventory,url_prefix='/inventory')
 app.register_blueprint(bills,url_prefix='/bills')
-app.register_blueprint(accounts,url_prefix='/accounts')
+app.register_blueprint(accounts_home,url_prefix='/accounts')

@@ -8,7 +8,7 @@
 
 <div
   class="row"
-  style="height: 450px; width:1100px; margin-top:120px;margin-left:75px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  style="height: auto; width:1100px; margin-top:120px;margin-left:85px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
   border-radius: 8px;mix-blend-mode:normal;"
 >
   <div align="center">
@@ -20,35 +20,21 @@
         <td>Expense Categories</td>
         <td>Expense Amount</td>
       </thead>
+      {% for key,value in table_values.items() %}
       <tr align="center" style="font-size: 18px;">
-        <td>Raw Material</td>
-        <td>Rs 897979</td>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
       </tr>
-      <tr align="center" style="font-size: 18px;">
-        <td>Raw Material</td>
-        <td>Rs 897979</td>
-      </tr>
-      <tr align="center" style="font-size: 18px;">
-        <td>Raw Material</td>
-        <td>Rs 897979</td>
-      </tr>
-      <tr align="center" style="font-size: 18px;">
-        <td>Raw Material</td>
-        <td>Rs 897979</td>
-      </tr>
-      <tr align="center" style="font-size: 18px;">
-        <td>Raw Material</td>
-        <td>Rs 897979</td>
-      </tr>
+      {% endfor %}
     </table>
   </div>
-  <div class="col" style="margin-top: 50px;">
+  <div class="col">
     <canvas id="piechart"></canvas>
     <script>
       Chart.defaults.global.responsive = true;
       var config = {
         // The type of chart we want to create
-        type: 'doughnut',
+        type: 'pie',
 
         // The data for our dataset
         data: {
@@ -72,7 +58,21 @@
             labels: {
               fontColor: "#000080",
             }
-          }
+          },
+          title:{
+            display:true,
+            text:'Expense && Profit Pie-Chart',
+            position:'top',
+            fontSize:20
+          },
+          layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 50,
+                bottom: 0
+            }
+        }
         }
       }
       var ctx = document.getElementById('piechart').getContext('2d');
@@ -83,47 +83,35 @@
 
 <div
   class="row"
-  style="margin-top:40px;margin-left:75px;margin-bottom:40px;width:1100px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  style="margin-top:40px;margin-left:85px;margin-bottom:40px;width:1100px;background:#ffffff;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
   border-radius: 8px;mix-blend-mode:normal;"
 >
   <div class="col p-3">
     <p style="font-size: 22px;text-align:center">Add Expense</p>
     <form
       align="center"
-      action="#"
+      method="POST"
       style="margin-top: 10px;"
-      class="form-inline"
+      class="form-group"
     >
-      <div class="form-group p-1">
-        <label for="amount">Amount</label>
-        <input
-          type="number"
-          class="form-control"
-          id="amount"
-          placeholder="Expense amount...."
-        />
-      </div>
-      <div class="form-group p-1 pl-3">
-        <label for="message">Expense Message</label>
-        <input
-          type="text"
-          class="form-control"
-          id="message"
-          placeholder="Expense Message...."
-        />
-      </div>
-      <div class="form-group p-1 pl-3">
-        <label for="expense-category">Example select</label>
-        <select class="form-control" id="expense-category">
-          <option>Raw Material</option>
-          <option>Cash</option>
-          <option>Miscellaneous</option>
-          <option>Fix Payment</option>
-          <option>Project Expense</option>
-        </select>
-      </div>
-      <div class="form-group p-1 pl-5">
-        <input type="submit" class="btn btn-primary" value="Update" />
+      {{form.hidden_tag()}}
+      <div class="row p-0 m-0">
+        <div class="form-group p-1 pl-4 ml-3">
+          {{form.category.label}} {{form.category(class="form-control")}}
+        </div>
+        <div class="form-group p-1 pl-4">
+          {{form.amount.label}} {{form.amount(placeholder='Expense Amount...',class="form-control")}}
+        </div>
+        <div class="form-group p-1 pl-4">
+          {{form.expense_message.label}}
+          {{form.expense_message(placeholder='Expense message...',class="form-control")}}
+        </div>
+        <div class="form-group p-1 pl-4">
+          {{form.date.label}} {{form.date(class="form-control")}}
+        </div>
+        <div class="form-group p-1 pl-4 pt-4 mt-2">
+          {{form.update(class="btn btn-primary")}}
+        </div>
       </div>
     </form>
   </div>
