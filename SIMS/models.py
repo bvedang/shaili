@@ -142,7 +142,19 @@ class BillsPDF_view(ModelView):
     can_export = True
     can_view_details = True
 
+class Accounts(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    amount = db.Column(db.Float)
+    message = db.Column(db.String(300))
+    category = db.Column(db.String(100))
+    date = db.Column(db.Date,nullable=False,default=date.today)
+
+class Accounts_view(ModelView):
+    can_export = True
+    can_view_details = True
+
 admin.add_views(LS_stage_1_view(LS_Stage1,db.session,endpoint='ls_stage1'))
 admin.add_views(LS_stage_2_view(LS_Stage2,db.session,endpoint='ls_stage2'))
 admin.add_views(LS_stage_3_view(LS_Stage3,db.session,endpoint='livo_ester'))
 admin.add_view(BillsPDF_view(BillsPDF,db.session))
+admin.add_view(Accounts_view(Accounts,db.session))
