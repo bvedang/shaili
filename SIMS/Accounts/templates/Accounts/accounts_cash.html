@@ -2,7 +2,7 @@
 
 <div class="row miscellaneous">
   <div class="col info-table" style="width: min-content;">
-    <h2 class="mic-table-info">Miscellaneous Expenses Entries</h2>
+    <h2 class="mic-table-info">Cash Expenses Entries</h2>
     <table class="table table-hover ta-ble">
       <thead style="font-size: 22px;">
         <td>Expense Message</td>
@@ -83,28 +83,6 @@
       var ctx = document.getElementById('misbargraph').getContext('2d');
       var bargraph = new Chart(ctx,config)
     </script>
-  </div>
-</div>
-
-<div class="col miscellaneous">
-  <div class="col info-table" style="width: min-content;">
-    <form method="POST">
-      {{form.hidden_tag()}}
-      <div class="form-group">
-        {{form.starting_date.label}}
-        {{form.starting_date(class="form-control")}}
-      </div>
-      <div class="form-group">
-        {{form.ending_date.label}}
-        {{form.ending_date(class="form-control")}}
-      </div>
-      <div class="form-group">
-        {{form.check(class="btn btn-info")}}
-      </div>
-    </form>
-    <div class="col">
-      {{miscellaneous_table}}
-    </div>
   </div>
 </div>
 

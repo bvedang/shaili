@@ -10,3 +10,9 @@ class Amount_add(FlaskForm):
     ('Cash','Cash'),('Fixed Payment','Fixed Payment'),('Project Payment','Project Payment'),('Raw Material','Raw Material'),('Profit','Profit')])
     date = DateField('Date',format='%Y-%m-%d',validators=[DataRequired()])
     update = SubmitField('Update')
+
+
+class Miscellaneous(FlaskForm):
+    starting_date = DateField('Starting Date',format='%Y-%m-%d',validators=[DataRequired()])
+    ending_date = DateField('Ending Date',format='%Y-%m-%d',validators=[DataRequired()])
+    check = SubmitField('Check')

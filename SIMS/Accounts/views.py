@@ -1,8 +1,9 @@
 from flask import Blueprint,redirect,url_for,request,render_template
 from flask_login import login_required
-from SIMS.Accounts.forms import Amount_add
+from SIMS.Accounts.forms import Amount_add,Miscellaneous
 from SIMS.models import Accounts
 from SIMS import db
+from SIMS.Accounts.table import Miscellaneous_table
 import datetime
 import calendar
 
@@ -78,6 +79,37 @@ def miscellaneous_value():
 @login_required
 @accounts_home.route('/home/Miscellaneous',methods=['GET','POST'])
 def miscellaneous():
+    form = Miscellaneous()
     amount,date,message=miscellaneous_value()
     colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
-    return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors)
+    if form.validate_on_submit():
+        miscellaneous_entries = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).limit(10).all()
+        miscellaneous_table = Miscellaneous_table(miscellaneous_entries,classes=['table','table-hover'])
+        return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form,miscellaneous_table=miscellaneous_table)
+    return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,
+    colors=colors,form=form)
+
+
+def cash_value():
+    now = datetime.datetime.now()
+    year = now.year
+    month = now.month
+    days = calendar.monthrange(year,month)[1]
+    start_date = datetime.date(year,month,1)
+    end_date = datetime.date(year,month,days)
+    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Cash').order_by(Accounts.date).all()
+    expense_message = []
+    expense_date = []
+    expense_amount = []
+    for i in miscellaneous_values:
+        expense_message.append(i.message)
+        expense_amount.append(i.amount)
+        expense_date.append(i.date)
+    return expense_amount,expense_date,expense_message
+
+@login_required
+@accounts_home.route('/home/Cash',methods=['GET','POST'])
+def cash():
+    amount,date,message=cash_value()
+    colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
+    return render_template('accounts_cash.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors)
