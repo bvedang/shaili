@@ -3,6 +3,8 @@ from flask_login import login_required
 from SIMS.Accounts.forms import Amount_add
 from SIMS.models import Accounts
 from SIMS import db
+import datetime
+import calendar
 
 
 accounts_home = Blueprint('accounts_home',__name__,template_folder='templates/Accounts')
@@ -54,7 +56,28 @@ def home():
         return redirect(url_for('accounts_home.home'))
     return render_template('accounts_home.html',legend=legend,labels=labels,colors=colors,form=form,values=values,table_values=table_values)
 
+
+def miscellaneous_value():
+    now = datetime.datetime.now()
+    year = now.year
+    month = now.month
+    days = calendar.monthrange(year,month)[1]
+    start_date = datetime.date(year,month,1)
+    end_date = datetime.date(year,month,days)
+    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Miscellaneous').order_by(Accounts.date).all()
+    expense_message = []
+    expense_date = []
+    expense_amount = []
+    for i in miscellaneous_values:
+        expense_message.append(i.message)
+        expense_amount.append(i.amount)
+        expense_date.append(i.date)
+    return expense_amount,expense_date,expense_message
+
+
 @login_required
 @accounts_home.route('/home/Miscellaneous',methods=['GET','POST'])
 def miscellaneous():
-    pass
+    amount,date,message=miscellaneous_value()
+    colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
+    return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors)
