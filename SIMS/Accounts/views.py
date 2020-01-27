@@ -83,7 +83,7 @@ def miscellaneous():
     amount,date,message=miscellaneous_value()
     colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
     if form.validate_on_submit():
-        miscellaneous_entries = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).limit(10).all()
+        miscellaneous_entries = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).filter(Accounts.category=='Miscellaneous').order_by(Accounts.date).limit(10).all()
         miscellaneous_table = Miscellaneous_table(miscellaneous_entries,classes=['table','table-hover'])
         return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form,miscellaneous_table=miscellaneous_table)
     return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,

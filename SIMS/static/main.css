@@ -15,7 +15,6 @@
 }
 
 .info-table{
-  width: min-content;
   text-align: center;
   font-size: 24px;
 }
@@ -27,4 +26,10 @@
 
 .graph-info{
   font-size: 24px;
+}
+
+.inner{
+  display:table;
+  margin: 0 auto;
+  font-size:20px
 }
