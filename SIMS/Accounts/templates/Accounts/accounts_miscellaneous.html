@@ -1,6 +1,6 @@
 {% extends 'accounts_index.html' %} {% block account %}
 
-<div class="row miscellaneous">
+<div class="row miscellaneous" style="margin-top: 30px;">
   <div class="col info-table" style="width: min-content;">
     <h2 class="mic-table-info">Miscellaneous Expenses Entries</h2>
     <table class="table table-hover ta-ble">
@@ -19,7 +19,7 @@
     </table>
   </div>
   <div class="col graph-info">
-    <canvas id="misbargraph" height="220"></canvas>
+    <canvas id="misbargraph" height="250"></canvas>
     <script>
       Chart.defaults.global.responsive = true;
       var config = {
@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<div  class="col miscellaneous" style="margin-top:60px">
+<div  class="col miscellaneous" style="margin-top:30px">
   <div class="col info-table" style="margin: 0 auto;">
     <form class="form-inline p-3" method="POST">
       {{form.hidden_tag()}}

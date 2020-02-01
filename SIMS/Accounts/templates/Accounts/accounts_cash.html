@@ -1,6 +1,6 @@
 {% extends 'accounts_index.html' %} {% block account %}
 
-<div class="row miscellaneous">
+<div class="row miscellaneous" style="margin-top: 30px;">
   <div class="col info-table" style="width: min-content;">
     <h2 class="mic-table-info">Cash Expenses Entries</h2>
     <table class="table table-hover ta-ble">
@@ -19,7 +19,7 @@
     </table>
   </div>
   <div class="col graph-info">
-    <canvas id="misbargraph" height="220"></canvas>
+    <canvas id="misbargraph" height="250"></canvas>
     <script>
       Chart.defaults.global.responsive = true;
       var config = {
@@ -61,13 +61,13 @@
                     padding: {
                         left: 0,
                         right: 0,
-                        top: 25,
+                        top: 20,
                         bottom: 0
                     }
                 },
                 title:{
                     display:true,
-                    text:'Miscellaneous Expense',
+                    text:'Cash Expense',
                     position:'top',
                     fontSize:20
                   },
@@ -83,6 +83,28 @@
       var ctx = document.getElementById('misbargraph').getContext('2d');
       var bargraph = new Chart(ctx,config)
     </script>
+  </div>
+</div>
+
+<div class="miscellaneous" style="margin-top: 30px;">
+  <div class="col info-table" style="margin: 0 auto;">
+    <form class="form-inline p-3" method="POST">
+      {{form.hidden_tag()}}
+      <div class="form-group pl-5">
+        {{form.starting_date.label}}
+        {{form.starting_date(class="form-control ml-3")}}
+      </div>
+      <div class="form-group pl-5">
+        {{form.ending_date.label}}
+        {{form.ending_date(class="form-control ml-3")}}
+      </div>
+      <div class="form-group pl-5">
+        {{form.check(class="btn btn-info p-2 ml-3")}}
+      </div>
+    </form>
+    <div class="col inner mb-5">
+      {{miscellaneous_table}}
+    </div>
   </div>
 </div>
 

@@ -150,6 +150,7 @@ class Accounts(db.Model):
     date = db.Column(db.Date,nullable=False,default=date.today)
 
 class Accounts_view(ModelView):
+    create_modal=True
     can_export = True
     can_view_details = True
 
