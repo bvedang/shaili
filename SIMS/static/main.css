@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap');
 .miscellaneous{
   height: auto;
   width: 95%;
@@ -12,6 +13,7 @@
   background-color: rgb(104, 104, 104);
 }
 body{
+  font-family: 'Roboto Mono', monospace;
   overflow: hidden;
 }
 .mic-table-info{

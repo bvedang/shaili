@@ -6,48 +6,14 @@ from SIMS import db
 from SIMS.Accounts.table import Miscellaneous_table
 import datetime
 import calendar
-
-
+from required import getvalues,get_month,miscellaneous_value,cash_value
 accounts_home = Blueprint('accounts_home',__name__,template_folder='templates/Accounts')
 
-def getvalues():
-    now = datetime.datetime.now()
-    year = now.year
-    month = now.month
-    days = calendar.monthrange(year,month)[1]
-    start_date = datetime.date(year,month,1)
-    end_date = datetime.date(year,month,days)
-    mis_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Miscellaneous').all()
-    cash_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Cash').all()
-    income_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Income').all()
-    proj_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Project Payment').all()
-    fixed_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Fixed Payment').all()
-    raw_value = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Raw Material').all()
-    mis = 0
-    for i in mis_value:
-        mis = mis+i.amount
-    cash = 0
-    for i in cash_value:
-        cash = cash+i.amount
-    income = 0
-    for i in income_value:
-        income = income+i.amount
-    proj = 0
-    for i in proj_value:
-        proj = proj+i.amount
-    fixed = 0
-    for i in fixed_value:
-        fixed = fixed+i.amount
-    raw = 0
-    for i in raw_value:
-        raw = raw+i.amount
-    values = [mis,cash,income,proj,fixed,raw]
-    table_values = {'Miscellaneous':mis,'Cash':cash,'Income':income,'Project Payment':proj,'Fixed Payment':fixed,'Raw Material':raw}
-    return values,table_values
-
+## HOME
 @login_required
 @accounts_home.route('/home',methods=['GET','POST'])
 def home():
+    month = get_month()
     values,table_values = getvalues()
     form = Amount_add()
     legend = 'Monthly Data'
@@ -61,27 +27,9 @@ def home():
         #print(type(date))
         
         return redirect(url_for('accounts_home.home'))
-    return render_template('accounts_home.html',legend=legend,labels=labels,colors=colors,form=form,values=values,table_values=table_values)
+    return render_template('accounts_home.html',legend=legend,labels=labels,colors=colors,form=form,values=values,table_values=table_values,month=month)
 
-
-def miscellaneous_value():
-    now = datetime.datetime.now()
-    year = now.year
-    month = now.month
-    days = calendar.monthrange(year,month)[1]
-    start_date = datetime.date(year,month,1)
-    end_date = datetime.date(year,month,days)
-    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Miscellaneous').order_by(Accounts.date).all()
-    expense_message = []
-    expense_date = []
-    expense_amount = []
-    for i in miscellaneous_values:
-        expense_message.append(i.message)
-        expense_amount.append(i.amount)
-        expense_date.append(i.date)
-    return expense_amount,expense_date,expense_message
-
-
+## MISCELLANEOUS
 @login_required
 @accounts_home.route('/home/Miscellaneous',methods=['GET','POST'])
 def miscellaneous():
@@ -95,24 +43,7 @@ def miscellaneous():
     return render_template('accounts_miscellaneous.html',values = zip(message,amount,date),date=date,amount=amount,
     colors=colors,form=form)
 
-
-def cash_value():
-    now = datetime.datetime.now()
-    year = now.year
-    month = now.month
-    days = calendar.monthrange(year,month)[1]
-    start_date = datetime.date(year,month,1)
-    end_date = datetime.date(year,month,days)
-    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Cash').order_by(Accounts.date).all()
-    expense_message = []
-    expense_date = []
-    expense_amount = []
-    for i in miscellaneous_values:
-        expense_message.append(i.message)
-        expense_amount.append(i.amount)
-        expense_date.append(i.date)
-    return expense_amount,expense_date,expense_message
-
+## CASH
 @login_required
 @accounts_home.route('/home/Cash',methods=['GET','POST'])
 def cash():

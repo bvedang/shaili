@@ -57,20 +57,16 @@
       <a class="navbar-brand ml-5" href="{{url_for('core.dashboard')}}">SIMS</a>
     </nav>
     <div class="row" style="background: #e0e0e0;">
-      <div class="col-2 rounded pt-3" style="background: #414141;height:100vh;">
-        <div>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a
-                class="nav-link text-light"
-                style="font-size:larger"
-                href="{{url_for('core.dashboard')}}"
-                ><i class="fas fa-tachometer-alt p-2"></i>Dashboard</a
-              >
-            </li>
-          </ul>
-        </div>
+      <div class="col-2 rounded pt-3 sidebar" style="background: #414141;height:100vh;overflow:auto">
         <ul class="nav flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link text-light"
+              style="font-size:larger"
+              href="{{url_for('core.dashboard')}}"
+              ><i class="fas fa-tachometer-alt p-2"></i>Dashboard</a
+            >
+          </li>
           <li class="nav-item p-2">
             <a
               class="nav-link text-light"
@@ -111,7 +107,7 @@
           </li>
         </ul>
       </div>
-      <div class="col p-0" style="background: #e0e0e0;overflow:auto">
+      <div class="col p-0" style="background: #e0e0e0;overflow:auto;">
         {% block content %} {% endblock %}
       </div>
     </div>
