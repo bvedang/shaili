@@ -1,7 +1,7 @@
 {% extends 'dashboard_base.html' %} {% block content %}
-<div
+<div class="bg-dark"
   align="center"
-  style="position:absolute;width: 175px;height:auto;background:#414141;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px;">
+  style="position:absolute;width: 175px;height:auto;;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px;">
   <p style="font-size:24px;color:#ffffff;margin:5px auto;text-decoration:none"><span>Accounts</span></p>
 </div>
 <div
@@ -9,7 +9,7 @@
 mix-blend-mode: normal;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px;"
-  class="row "
+  class="row bg-dark"
 >
   <p style="margin:5px auto">
     <a
@@ -19,17 +19,17 @@ border-radius: 5px;"
 
     >
   </p>
-  <div class="dropdown show drop-down" style="margin:0 auto;">
-    <a class="btn dropdown-toggle" style="background-color: #414141;color:#fff;font-size:20px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div class="dropdown show drop-down bg-dark" style="margin:0 auto;">
+    <a class="btn dropdown-toggle" style=";color:#fff;font-size:20px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Category
     </a>
-    <div class="dropdown-menu drop-down" style="background-color: #414141;" aria-labelledby="dropdownMenuLink;">
+    <div class="dropdown-menu drop-down bg-dark" aria-labelledby="dropdownMenuLink;">
       <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.miscellaneous')}}">Miscellaneous</a>
       <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.cash')}}">Cash</a>
-      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="#">Profit</a>
-      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="#">Project Payment</a>
-      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="#">Fixed Payment</a>
-      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="#">Raw Material</a>
+      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.income')}}">Income</a>
+      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.project_payment')}}">Project Payment</a>
+      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.fixed_payment')}}">Fixed Payment</a>
+      <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts_home.raw_material')}}">Raw Material</a>
       <a class="dropdown-item drop-down" style="font-size: 20px;color:#fff" href="{{url_for('accounts.index_view')}}">Total Account entries</a>
     </div>
   </div>

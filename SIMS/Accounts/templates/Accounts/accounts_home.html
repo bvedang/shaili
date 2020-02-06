@@ -85,24 +85,21 @@
       {{form.hidden_tag()}}
       <div class="form-inline p-0 m-0">
         <div class="form-group p-1 ml-3">
-          {{form.category.label}} {{form.category(class="form-control")}}
+          {{form.category.label(class="mr-2")}} {{form.category(class="form-control")}}
         </div>
-        <div class="form-group p-1 pl-4">
-          {{form.amount.label}} {{form.amount(placeholder='Expense Amount...',class="form-control")}}
+        <div class="form-group p-1 pl-3">
+          {{form.amount.label(class="mr-2")}} {{form.amount(placeholder='Expense Amount...',class="form-control")}}
         </div>
-        <div class="form-group p-1 pl-4">
-          {{form.expense_message.label}}
+        <div class="form-group p-1 pl-3">
+          {{form.expense_message.label(class="mr-2")}}
           {{form.expense_message(placeholder='Expense message...',class="form-control")}}
         </div>
-        <div class="form-group p-1 pl-4">
-          {{form.date.label}} {{form.date(class="form-control")}}
-        </div>
-        <div class="form-group">
-          {{form.update(class="btn btn-info ml-3")}}
+        <div class="form-group p-1 pl-3">
+          {{form.date.label(class="mr-2")}} {{form.date(class="form-control")}}
         </div>
       </div>
-      <div class="col" style="margin-top: 10px;">
-        
+      <div class="form-group mt-2">
+        {{form.update(class="btn btn-info")}}
       </div>
     </form>
   </div>

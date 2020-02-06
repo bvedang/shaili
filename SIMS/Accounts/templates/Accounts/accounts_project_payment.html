@@ -1,0 +1,111 @@
+{% extends 'accounts_index.html' %} {% block account %}
+
+<div class="row miscellaneous" style="margin-top: 30px;">
+  <div class="col info-table" style="width: min-content;">
+    <h2 class="mic-table-info">Project Payment Entries</h2>
+    <table class="table table-hover ta-ble">
+      <thead style="font-size: 22px;">
+        <td>Expense Message</td>
+        <td>Amount</td>
+        <td>Date</td>
+      </thead>
+      {% for i,j,k in values %}
+      <tr style="font-size: 20px;">
+        <td>{{i}}</td>
+        <td>{{j}}</td>
+        <td>{{k}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col graph-info">
+    <canvas id="misbargraph" height="250"></canvas>
+    <script>
+      Chart.defaults.global.responsive = true;
+      var config = {
+          type:'bar',
+          data:{
+              datasets:[{
+                  data:[{% for i in amount %} {{i}},
+                  {% endfor %}],
+                  label:'Current Month',
+                  backgroundColor:['rgba(255, 99, 132)',
+                  'rgba(54, 162, 235)',
+                  'rgba(255, 206, 86)',
+                  'rgba(75, 192, 192)',
+                  'rgba(153, 102, 255)',
+                  'rgba(255, 159, 64)'],
+                  borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }],
+              labels:[{% for i in date %} "{{i}}",
+              {% endfor %}]
+          },
+          options: {
+              fontSizeL: 20,
+              scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                        }
+                    }]
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 20,
+                        bottom: 0
+                    }
+                },
+                title:{
+                    display:true,
+                    text:'Project Payment',
+                    position:'top',
+                    fontSize:20
+                  },
+                  legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                      fontColor: "#000000",
+                    }
+                  }
+            }
+      }
+      var ctx = document.getElementById('misbargraph').getContext('2d');
+      var bargraph = new Chart(ctx,config)
+    </script>
+  </div>
+</div>
+
+<div class="miscellaneous" style="margin-top: 30px;">
+  <div class="col info-table" style="margin: 0 auto;">
+    <form class="form-inline p-3" method="POST">
+      {{form.hidden_tag()}}
+      <div class="form-group pl-5">
+        {{form.starting_date.label}}
+        {{form.starting_date(class="form-control ml-3")}}
+      </div>
+      <div class="form-group pl-5">
+        {{form.ending_date.label}}
+        {{form.ending_date(class="form-control ml-3")}}
+      </div>
+      <div class="form-group pl-5">
+        {{form.check(class="btn btn-info p-2 ml-3")}}
+      </div>
+    </form>
+    <div class="col inner mb-5">
+      {{project_payment_table}}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
