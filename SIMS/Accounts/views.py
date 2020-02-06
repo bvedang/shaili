@@ -6,7 +6,7 @@ from SIMS import db
 from SIMS.Accounts.table import Miscellaneous_table
 import datetime
 import calendar
-from required import getvalues,get_month,miscellaneous_value,cash_value
+from SIMS.Accounts.required import getvalues,get_month,account_value
 accounts_home = Blueprint('accounts_home',__name__,template_folder='templates/Accounts')
 
 ## HOME
@@ -34,7 +34,7 @@ def home():
 @accounts_home.route('/home/Miscellaneous',methods=['GET','POST'])
 def miscellaneous():
     form = Genral_query()
-    amount,date,message=miscellaneous_value()
+    amount,date,message=account_value('Miscellaneous')
     colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
     if form.validate_on_submit():
         miscellaneous_entries = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).filter(Accounts.category=='Miscellaneous').order_by(Accounts.date).limit(10).all()
@@ -48,6 +48,10 @@ def miscellaneous():
 @accounts_home.route('/home/Cash',methods=['GET','POST'])
 def cash():
     form = Genral_query()
-    amount,date,message=cash_value()
+    amount,date,message=account_value('Cash')
     colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
+    if form.validate_on_submit():
+        cash_entries = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).filter(Accounts.category=='Cash').order_by(Accounts.date).limit(10).all()
+        cash_table = Miscellaneous_table(cash_entries,classes=['table','table-hover'])
+        return render_template('accounts_cash.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form,cash_table=cash_table)
     return render_template('accounts_cash.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form)

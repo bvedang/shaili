@@ -44,34 +44,16 @@ def get_month():
     month = calendar.month_name[month]
     return month
 
-####  MISCELLANEOUS
-def miscellaneous_value():
+
+#####    ACCOUNT VALUES
+def account_value(category):
     now = datetime.datetime.now()
     year = now.year
     month = now.month
     days = calendar.monthrange(year,month)[1]
     start_date = datetime.date(year,month,1)
     end_date = datetime.date(year,month,days)
-    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Miscellaneous').order_by(Accounts.date).all()
-    expense_message = []
-    expense_date = []
-    expense_amount = []
-    for i in miscellaneous_values:
-        expense_message.append(i.message)
-        expense_amount.append(i.amount)
-        expense_date.append(i.date)
-    return expense_amount,expense_date,expense_message
-
-
-#####    CASH
-def cash_value():
-    now = datetime.datetime.now()
-    year = now.year
-    month = now.month
-    days = calendar.monthrange(year,month)[1]
-    start_date = datetime.date(year,month,1)
-    end_date = datetime.date(year,month,days)
-    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category=='Cash').order_by(Accounts.date).all()
+    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category==category).order_by(Accounts.date).all()
     expense_message = []
     expense_date = []
     expense_amount = []
