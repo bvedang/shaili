@@ -1,5 +1,6 @@
 import datetime
 import calendar
+from flask import request
 from SIMS.models import Accounts
 
 def getvalues():
@@ -62,3 +63,15 @@ def account_value(category):
         expense_amount.append(i.amount)
         expense_date.append(i.date)
     return expense_amount,expense_date,expense_message
+
+
+def raw_value(category):
+    now = datetime.datetime.now()
+    year = now.year
+    month = now.month
+    page = request.args.get('page',1,type=int)
+    days = calendar.monthrange(year,month)[1]
+    start_date = datetime.date(year,month,1)
+    end_date = datetime.date(year,month,days)
+    miscellaneous_values = Accounts.query.filter(Accounts.date >= start_date,Accounts.date <=end_date).filter(Accounts.category==category).order_by(Accounts.date.desc()).paginate(page=page,per_page=5)
+    return miscellaneous_values

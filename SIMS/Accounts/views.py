@@ -5,8 +5,9 @@ from SIMS.models import Accounts
 from SIMS import db
 from SIMS.Accounts.table import Miscellaneous_table
 import datetime
+from flask_paginate import Pagination,get_page_parameter
 import calendar
-from SIMS.Accounts.required import getvalues,get_month,account_value
+from SIMS.Accounts.required import getvalues,get_month,account_value,raw_value
 accounts_home = Blueprint('accounts_home',__name__,template_folder='templates/Accounts')
 
 ## HOME
@@ -23,9 +24,6 @@ def home():
         expense = Accounts(amount=form.amount.data,message=form.expense_message.data,category=form.category.data,date=form.date.data)
         db.session.add(expense)
         db.session.commit()
-        #date = form.date.data
-        #print(type(date))
-        
         return redirect(url_for('accounts_home.home'))
     return render_template('accounts_home.html',legend=legend,labels=labels,colors=colors,form=form,values=values,table_values=table_values,month=month)
 
@@ -100,11 +98,12 @@ def fixed_payment():
 @login_required
 @accounts_home.route('/home/Raw_Material',methods=['GET','POST'])
 def raw_material():
+    page = request.args.get('page',1,type=int)
     form = Genral_query()
-    amount,date,message=account_value('Raw Material')
+    raw=raw_value('Raw Material')
     colors = ['#666547','#fb2e01','#21bf73','#ffcc00','#ffe28a','#f65c78']
     if form.validate_on_submit():
-        raw_material = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).filter(Accounts.category=='Raw Material').order_by(Accounts.date).limit(10).all()
+        raw_material = Accounts.query.filter(Accounts.date >= form.starting_date.data,Accounts.date <=form.ending_date.data).filter(Accounts.category=='Raw Material').order_by(Accounts.date).all()
         raw_material_table = Miscellaneous_table(raw_material,classes=['table','table-hover'])
-        return render_template('accounts_raw_material.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form,raw_material_table=raw_material_table)
-    return render_template('accounts_raw_material.html',values = zip(message,amount,date),date=date,amount=amount,colors=colors,form=form)
+        return render_template('accounts_raw_material.html',raw=raw,colors=colors,form=form,raw_material_table=raw_material_table)
+    return render_template('accounts_raw_material.html',raw=raw,colors=colors,form=form)

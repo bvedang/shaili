@@ -1,110 +1,136 @@
 {% extends 'dashboard_base.html' %} {% block content %}
-
-<div class="bg-dark"
-  align="center"
-  style="width: 175px;height:auto;background:#414141;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px;"
->
-  <p class="p-1" style="font-size:24px;color:#ffffff;margin:5px auto;text-decoration:none">
-    <span>Dashboard</span>
-  </p>
-</div>
-
-<div class="row">
-  <div
-    class=" ml-5 mt-2 card"
-    style="height:110px;width:260px;background:#29b6f6; border-radius:2px;"
-  >
-    <div class="row">
-      <div class="col">
-        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
-          Current Status
-        </p>
-      </div>
-      <div class="col">
-        <i
-          class="fas fa-shopping-cart ml-5 mt-3"
-          style="font-size:40px;opacity:0.7"
-        ></i>
-      </div>
+<div class="alert ">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category ==
+  'message' %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {% else %}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {% endif %} {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div align="center" class="col mt-4" style="background: #039be5;">
-      <a class="text-light" style="text-decoration:none;" href="#"
-        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
-      ></a>
-    </div>
+    {% endfor %} {% endif %} {% endwith %}
   </div>
   <div
-    class="ml-5 mt-2 card"
-    style="height:110px;width: 260px; background:#4caf50;border-radius:2px;"
+    class="bg-dark"
+    align="center"
+    style="width: 175px;height:auto;background:#414141;margin-top:50px;box-shadow:0px 5px 5px rgba(0,0,0,0.3);border-radius:0px 50px 50px 0px;"
   >
-    <div class="row">
-      <div class="col">
-        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
-          Production
-        </p>
-      </div>
-      <div class="col">
-        <i
-          class="fas fa-clipboard-check ml-5 mt-3"
-          style="font-size:40px;opacity:0.7"
-        ></i>
-      </div>
-    </div>
-    <div align="center" class="col mt-4" style="background: #2e7d32;">
-      <a class="text-light" style="text-decoration:none;" href="#"
-        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
-      ></a>
-    </div>
+    <p
+      class="p-1"
+      style="font-size:24px;color:#ffffff;margin:5px auto;text-decoration:none"
+    >
+      <span>Dashboard</span>
+    </p>
   </div>
-  <div
-    class="ml-5 mt-2 card"
-    style="height:110px;width: 260px;background:#ffab00;border-radius:2px;"
-  >
-    <div class="row">
-      <div class="col">
-        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
-          PO & Deadlines
-        </p>
-      </div>
-      <div class="col">
-        <i
-          class="fas fa-exclamation-triangle ml-5 mt-3"
-          style="font-size:40px;opacity:0.7"
-        ></i>
-      </div>
-    </div>
 
-    <div align="center" class="col mt-4" style="background: #ff8f00;">
-      <a class="text-light" style="text-decoration:none;" href="#"
-        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
-      ></a>
-    </div>
-  </div>
-  <div
-    class="ml-5 mt-2 card"
-    style="height:110px;width: 260px;background:#f44336;border-radius:2px;"
-  >
-    <div class="row">
-      <div class="col">
-        <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
-          Due Payments
-        </p>
-      </div>
-      <div class="col">
-        <a
-          ><i
-            class="fas fa-receipt ml-5 mt-3"
+  <div class="row">
+    <div
+      class=" ml-5 mt-2 card"
+      style="height:110px;width:260px;background:#29b6f6; border-radius:2px;"
+    >
+      <div class="row">
+        <div class="col">
+          <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+            Current Status
+          </p>
+        </div>
+        <div class="col">
+          <i
+            class="fas fa-shopping-cart ml-5 mt-3"
             style="font-size:40px;opacity:0.7"
-          ></i
+          ></i>
+        </div>
+      </div>
+      <div align="center" class="col mt-4" style="background: #039be5;">
+        <a class="text-light" style="text-decoration:none;" href="#"
+          >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
         ></a>
       </div>
     </div>
-    <div align="center" class="col mt-4" style="background: #c62828;">
-      <a class="text-light" style="text-decoration:none;" href="#"
-        >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
-      ></a>
+    <div
+      class="ml-5 mt-2 card"
+      style="height:110px;width: 260px; background:#4caf50;border-radius:2px;"
+    >
+      <div class="row">
+        <div class="col">
+          <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+            Production
+          </p>
+        </div>
+        <div class="col">
+          <i
+            class="fas fa-clipboard-check ml-5 mt-3"
+            style="font-size:40px;opacity:0.7"
+          ></i>
+        </div>
+      </div>
+      <div align="center" class="col mt-4" style="background: #2e7d32;">
+        <a class="text-light" style="text-decoration:none;" href="#"
+          >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+        ></a>
+      </div>
+    </div>
+    <div
+      class="ml-5 mt-2 card"
+      style="height:110px;width: 260px;background:#ffab00;border-radius:2px;"
+    >
+      <div class="row">
+        <div class="col">
+          <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+            PO & Deadlines
+          </p>
+        </div>
+        <div class="col">
+          <i
+            class="fas fa-exclamation-triangle ml-5 mt-3"
+            style="font-size:40px;opacity:0.7"
+          ></i>
+        </div>
+      </div>
+
+      <div align="center" class="col mt-4" style="background: #ff8f00;">
+        <a class="text-light" style="text-decoration:none;" href="#"
+          >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+        ></a>
+      </div>
+    </div>
+    <div
+      class="ml-5 mt-2 card"
+      style="height:110px;width: 260px;background:#f44336;border-radius:2px;"
+    >
+      <div class="row">
+        <div class="col">
+          <p class="card-text text-light ml-2 mt-2" style="font-size:large;">
+            Due Payments
+          </p>
+        </div>
+        <div class="col">
+          <a
+            ><i
+              class="fas fa-receipt ml-5 mt-3"
+              style="font-size:40px;opacity:0.7"
+            ></i
+          ></a>
+        </div>
+      </div>
+      <div align="center" class="col mt-4" style="background: #c62828;">
+        <a class="text-light" style="text-decoration:none;" href="#"
+          >More Info<i class="far fa-arrow-alt-circle-right ml-3"></i
+        ></a>
+      </div>
     </div>
   </div>
-</div>
 
-{% endblock %}
+  {% endblock %}
+</div>
