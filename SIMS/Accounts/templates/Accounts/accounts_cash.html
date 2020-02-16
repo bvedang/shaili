@@ -9,14 +9,25 @@
         <td>Amount</td>
         <td>Date</td>
       </thead>
-      {% for i,j,k in values %}
+      {% for i in cash.items %}
       <tr style="font-size: 20px;">
-        <td>{{i}}</td>
-        <td>{{j}}</td>
-        <td>{{k}}</td>
+        <td>{{i.message}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.date}}</td>
       </tr>
       {% endfor %}
     </table>
+    {% for page_num in cash.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+        {% if page_num %}
+          {% if cash.page == page_num %}
+            <a class="btn btn-outline-info active mb-2" href="{{url_for('accounts_home.cash',page=page_num)}}">{{page_num}}</a>
+          {% else %}
+          <a class="btn btn-outline-info mb-2" href="{{url_for('accounts_home.cash',page=page_num)}}">{{page_num}}</a>
+          {% endif %}
+        {% else %}
+
+        {% endif %}
+      {% endfor %}
   </div>
   <div class="col graph-info">
     <canvas id="misbargraph" height="250"></canvas>
@@ -26,7 +37,7 @@
           type:'bar',
           data:{
               datasets:[{
-                  data:[{% for i in amount %} {{i}},
+                  data:[{% for i in cash.items %} {{i.amount}},
                   {% endfor %}],
                   label:'Current Month',
                   backgroundColor:['rgba(255, 99, 132)',
@@ -45,7 +56,7 @@
                 ],
                 borderWidth: 1
               }],
-              labels:[{% for i in date %} "{{i}}",
+              labels:[{% for i in cash.items %} "{{i.date}}",
               {% endfor %}]
           },
           options: {

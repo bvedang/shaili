@@ -52,24 +52,33 @@
     </style>
     <title>Dashboard</title>
   </head>
-  <body style="overflow-y: scroll;">
+  <body style="overflow-y: scroll;overflow-x:hidden">
     <nav class="navbar navbar-dark bg-dark fixed-top" style="box-shadow:0px 5px 5px rgba(0,0,0,0.3)">
       <a class="navbar-brand ml-5" href="{{url_for('core.dashboard')}}">SIMS</a>
     </nav>
     <div class="row bg-dark" style="margin-top: 50px;">
       <div class="col-2 rounded pt-3 sidebar" style="height:100vh;overflow:auto">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a
-              class="nav-link text-light"
-              style="font-size:larger"
+        <ul class="nav flex-column nav-pills nav-fill p-0">
+          <li class="nav-item p-2" >
+            <a 
+            {% if request.path == '/dashboard' %}
+              class="active nav-link shadow-lg"
+            {% else %}
+              class="nav-link"
+            {% endif %}
+              style="font-size:large"
               href="{{url_for('core.dashboard')}}"
-              ><i class="fas fa-tachometer-alt p-2"></i>Dashboard</a
+              ><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a
             >
           </li>
           <li class="nav-item p-2">
             <a
-              class="nav-link text-light"
+            {% if request.path == '/inventory/inventory-home' %}
+              class="active nav-link shadow-lg"
+            {% else %}
+              class="nav-link"
+            {% endif %}
+              class="nav-link "
               style="font-size:large"
               href="{{url_for('inventory.home')}}"
             >
@@ -77,13 +86,13 @@
             </a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link  text-light" style="font-size:large" href="#"
+            <a class="nav-link " style="font-size:large" href="#"
               ><i class="fas fa-cubes mr-2"></i>Stocks</a
             >
           </li>
           <li class="nav-item p-2">
             <a
-              class="nav-link  text-light"
+              class="nav-link "
               style="font-size:large"
               href="{{url_for('bills.home')}}"
               ><i class="fas fa-file-invoice mr-2"></i>Bills</a
@@ -91,7 +100,7 @@
           </li>
           <li class="nav-item p-2">
             <a
-              class="nav-link  text-light"
+              class="nav-link "
               style="font-size:large"
               href="{{url_for('accounts_home.home')}}"
               ><i class="fas fa-chart-pie mr-2"></i>Accounts</a
@@ -99,7 +108,7 @@
           </li>
           <li class="nav-item p-2">
             <a
-              class="nav-link  text-light"
+              class="nav-link"
               style="font-size:large"
               href="{{url_for('auth.logout')}}"
               ><i class="fas fa-sign-out-alt mr-2"></i>logout</a
